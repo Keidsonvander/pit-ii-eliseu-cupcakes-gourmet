@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cupcakes Gourmet — PIT II</title>
+<style>
+:root{--vinho:#6b3148;--rosa:#f3dce5;--creme:#fff9f5;--texto:#332b2d;--ok:#2f7d4a;--erro:#b42318;--borda:#ead9de}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#fffaf7,#f8eef2);color:var(--texto)}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--borda);padding:14px 5vw;display:flex;align-items:center;justify-content:space-between;gap:16px}.marca{font-weight:800;color:var(--vinho);font-size:1.25rem}.sub{font-size:.88rem;color:#6e6366}.badge{background:var(--rosa);color:var(--vinho);padding:8px 12px;border-radius:999px;font-weight:700}
+main{max-width:1100px;margin:32px auto;padding:0 20px}.hero{background:#fff;border:1px solid var(--borda);border-radius:24px;padding:28px;display:grid;grid-template-columns:1.4fr .6fr;gap:20px;box-shadow:0 12px 30px #6b314812}.hero h1{margin:0 0 10px;color:var(--vinho);font-size:2.1rem}.hero p{line-height:1.55;margin:0}.hero-card{background:var(--creme);border:1px solid var(--borda);border-radius:20px;padding:20px}.hero-card strong{display:block;color:var(--vinho);margin-bottom:8px}
+section{margin-top:32px}h2{color:var(--vinho);margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.produto{background:#fff;border:1px solid var(--borda);border-radius:20px;padding:18px;box-shadow:0 8px 22px #6b31480d}.cup{height:130px;border-radius:16px;background:radial-gradient(circle at 50% 35%,#ffe8ef 0 28%,#d18aa5 29% 45%,#6b3148 46% 47%,#f2c3a7 48% 100%);margin-bottom:14px}.produto h3{margin:0 0 6px}.preco{font-weight:800;color:var(--vinho);font-size:1.15rem}.produto button,.acao{width:100%;margin-top:12px;border:0;border-radius:12px;padding:12px 14px;background:var(--vinho);color:white;font-weight:700;cursor:pointer}.produto button:hover,.acao:hover{filter:brightness(.95)}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.painel{background:#fff;border:1px solid var(--borda);border-radius:20px;padding:20px}.item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #f0e4e8}.item:last-child{border-bottom:0}.qtd{display:flex;gap:6px;align-items:center}.qtd button{width:30px;height:30px;border-radius:8px;border:1px solid var(--borda);background:#fff;cursor:pointer}.total{display:flex;justify-content:space-between;font-weight:800;font-size:1.2rem;margin-top:14px;color:var(--vinho)}
+label{display:block;font-weight:700;margin:12px 0 6px}input,select{width:100%;padding:12px;border:1px solid #d8c8ce;border-radius:10px;font:inherit;background:#fff}.opcoes{display:flex;gap:10px}.opcoes label{flex:1;margin:0}.opcoes input{width:auto}.erro{color:var(--erro);font-size:.9rem;margin-top:8px;display:none}.sucesso{display:none;margin-top:18px;padding:18px;border-radius:14px;background:#eaf7ef;border:1px solid #b9dfc5;color:#205c36}.codigo{font-size:1.35rem;font-weight:900;margin-top:8px}.muted{color:#71666a;font-size:.9rem}.status-box{margin-top:12px;padding:14px;border-radius:12px;background:#faf6f7;border:1px solid var(--borda)}footer{text-align:center;padding:36px 20px;color:#776c70}
+@media(max-width:820px){.hero,.layout{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.hero h1{font-size:1.7rem}.opcoes{flex-direction:column}.item{grid-template-columns:1fr auto}.item .preco{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header><div><div class="marca">🧁 Cupcakes Gourmet</div><div class="sub">PIT II — Eliseu Souza dos Santos | RGM 33118141</div></div><div class="badge" id="contador">Carrinho: 0</div></header>
+<main>
+<div class="hero"><div><h1>Monte seu pedido de cupcakes gourmet</h1><p>Escolha os sabores, ajuste as quantidades, selecione retirada ou entrega e finalize o pedido. Esta versão demonstra as melhorias de usabilidade levantadas nos testes da PIT II.</p></div><div class="hero-card"><strong>Melhorias aplicadas</strong><div class="muted">Validação clara • total atualizado • endereço condicional • layout responsivo • código do pedido em destaque</div></div></div>
+<section><h2>Vitrine</h2><div class="grid" id="produtos"></div></section>
+<section class="layout"><div class="painel"><h2>Seu carrinho</h2><div id="carrinho"><p class="muted">Nenhum item adicionado.</p></div><div class="total"><span>Total</span><span id="total">R$ 0,00</span></div></div>
+<div class="painel"><h2>Finalizar pedido</h2>
+<label for="nome">Nome *</label><input id="nome" placeholder="Nome completo" />
+<label for="telefone">Telefone *</label><input id="telefone" placeholder="(00) 00000-0000" />
+<label>Modalidade *</label><div class="opcoes"><label><input type="radio" name="modalidade" value="retirada" checked /> Retirada</label><label><input type="radio" name="modalidade" value="entrega" /> Entrega</label></div>
+<div id="enderecoWrap" style="display:none"><label for="endereco">Endereço *</label><input id="endereco" placeholder="Rua, número e bairro" /></div>
+<label for="pagamento">Forma de pagamento *</label><select id="pagamento"><option value="">Selecione</option><option>Pix</option><option>Cartão na entrega</option><option>Dinheiro</option></select>
+<div class="erro" id="erro">Preencha todos os campos obrigatórios e adicione ao menos um produto.</div><button class="acao" id="finalizar">Finalizar pedido</button>
+<div class="sucesso" id="sucesso"><strong>Pedido confirmado com sucesso.</strong><div class="codigo" id="codigo"></div><div class="muted" style="margin-top:6px">Status inicial: Recebido</div></div>
+</div></section>
+<section class="painel"><h2>Consultar último pedido</h2><p class="muted">A consulta usa os dados salvos localmente nesta demonstração.</p><div class="status-box" id="status">Nenhum pedido finalizado nesta sessão.</div></section>
+</main><footer>Demonstração acadêmica — Projeto Integrador Transdisciplinar em Engenharia de Software II</footer>
+<script>
+const catalogo=[{id:1,nome:'Red Velvet',preco:12},{id:2,nome:'Chocolate Belga',preco:10},{id:3,nome:'Baunilha com Frutas',preco:9.5},{id:4,nome:'Limão Siciliano',preco:11},{id:5,nome:'Doce de Leite',preco:10.5},{id:6,nome:'Café com Chocolate',preco:12.5}];
+const carrinho={};const fmt=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function renderProdutos(){document.getElementById('produtos').innerHTML=catalogo.map(p=>`<article class="produto"><div class="cup"></div><h3>${p.nome}</h3><div class="preco">${fmt(p.preco)}</div><button onclick="add(${p.id})">Adicionar ao carrinho</button></article>`).join('')}
+function add(id){carrinho[id]=(carrinho[id]||0)+1;renderCarrinho()}
+function mudar(id,d){carrinho[id]=(carrinho[id]||0)+d;if(carrinho[id]<=0)delete carrinho[id];renderCarrinho()}
+function renderCarrinho(){const ids=Object.keys(carrinho);const box=document.getElementById('carrinho');if(!ids.length){box.innerHTML='<p class="muted">Nenhum item adicionado.</p>'}else{box.innerHTML=ids.map(id=>{const p=catalogo.find(x=>x.id==id),q=carrinho[id];return `<div class="item"><div><strong>${p.nome}</strong></div><div class="qtd"><button onclick="mudar(${id},-1)">−</button><span>${q}</span><button onclick="mudar(${id},1)">+</button></div><div class="preco">${fmt(p.preco*q)}</div></div>`}).join('')}const total=ids.reduce((s,id)=>{const p=catalogo.find(x=>x.id==id);return s+p.preco*carrinho[id]},0);document.getElementById('total').textContent=fmt(total);document.getElementById('contador').textContent='Carrinho: '+ids.reduce((s,id)=>s+carrinho[id],0)}
+function modalidade(){const ent=document.querySelector('input[name="modalidade"]:checked').value==='entrega';document.getElementById('enderecoWrap').style.display=ent?'block':'none'}
+document.querySelectorAll('input[name="modalidade"]').forEach(r=>r.addEventListener('change',modalidade));
+document.getElementById('finalizar').addEventListener('click',()=>{const nome=document.getElementById('nome').value.trim(),tel=document.getElementById('telefone').value.trim(),pag=document.getElementById('pagamento').value,mod=document.querySelector('input[name="modalidade"]:checked').value,end=document.getElementById('endereco').value.trim();const ok=Object.keys(carrinho).length&&nome&&tel&&pag&&(mod==='retirada'||end);document.getElementById('erro').style.display=ok?'none':'block';if(!ok)return;const codigo='#'+String(Math.floor(1000+Math.random()*9000));const pedido={codigo,nome,status:'Recebido',modalidade:mod,total:document.getElementById('total').textContent,data:new Date().toLocaleString('pt-BR')};localStorage.setItem('ultimoPedido',JSON.stringify(pedido));document.getElementById('codigo').textContent='Código do pedido: '+codigo;document.getElementById('sucesso').style.display='block';renderStatus();document.getElementById('sucesso').scrollIntoView({behavior:'smooth'})});
+function renderStatus(){const p=JSON.parse(localStorage.getItem('ultimoPedido')||'null');document.getElementById('status').innerHTML=p?`<strong>${p.codigo}</strong> — ${p.status}<br><span class="muted">${p.nome} • ${p.modalidade} • ${p.total} • ${p.data}</span>`:'Nenhum pedido finalizado nesta sessão.'}
+renderProdutos();renderCarrinho();renderStatus();
+</script>
+</body></html>
